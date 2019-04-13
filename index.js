@@ -10,6 +10,7 @@ mongoose.connect(process.env.MONGO_CONNECTION, {
 
 const middlewares = require('./src/auth/middlewares.js');
 const auth = require(`./src/auth/index.js`);
+const notes = require('./src/notes');
 
 const app = express();
 
@@ -25,7 +26,8 @@ app.get('/', (req, res) => {
   });
 });
 
-app.use(`/auth`, auth);
+app.use('/auth', auth);
+app.use('/notes', middlewares.isLoggedIn, notes);
 
 function notFound(req, res, next) {
   res.status(404);
