@@ -2,9 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 
-const db = require(`./db/connection.js`);
-const notes = db.get(`notes`);
-
+const Note = require(`./db/Note.js`);
 const schema = Joi.object().keys({
   title: Joi.string()
     .trim()
@@ -16,10 +14,9 @@ const schema = Joi.object().keys({
 });
 
 router.get('/', (req, res, next) => {
-  notes
-    .find({
-      user_id: req.user._id,
-    })
+  Note.find({
+    user_id: req.user._id,
+  })
     .then(notes => res.json(notes))
     .catch(next);
 });
@@ -31,8 +28,7 @@ router.post('/', (req, res, next) => {
       ...req.body,
       user_id: req.user._id,
     };
-    notes
-      .insert(note)
+    Note.create({ note })
       .then(insertedNote => {
         res.json(insertedNote);
       })

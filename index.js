@@ -1,13 +1,17 @@
 const express = require('express');
 const volleyball = require('volleyball');
 const cors = require('cors');
+const mongoose = require('mongoose');
+
+mongoose.connect(process.env.MONGO_URL, {
+  useNewUrlParser: true,
+});
 
 require('dotenv').config();
+const middlewares = require('./src/auth/middlewares.js');
+const auth = require(`./src/auth/index.js`);
 
 const app = express();
-const middlewares = require('./src/auth/middlewares.js');
-
-const auth = require(`./src/auth/index.js`);
 
 app.use(cors());
 app.use(volleyball);
