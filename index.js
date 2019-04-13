@@ -11,7 +11,11 @@ const middlewares = require('./src/auth/middlewares.js');
 const auth = require(`./src/auth/index.js`);
 
 app.use(volleyball);
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://jwtauthfrontend.herokuapp.com/',
+  }),
+);
 app.use(express.json());
 app.use(middlewares.checkTokenSetUser);
 
