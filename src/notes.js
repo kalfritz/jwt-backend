@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const Joi = require('joi');
 
-const Note = require(`./db/Note.js`);
+const Note = require(`./models/Note.js`);
 const schema = Joi.object().keys({
   title: Joi.string()
     .trim()
