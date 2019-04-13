@@ -5,17 +5,16 @@ const cors = require('cors');
 require('dotenv').config();
 
 const app = express();
-
 const middlewares = require('./src/auth/middlewares.js');
 
 const auth = require(`./src/auth/index.js`);
 
-app.use(volleyball);
 app.use(
   cors({
     origin: 'https://jwtauthfrontend.herokuapp.com/',
   }),
 );
+app.use(volleyball);
 app.use(express.json());
 app.use(middlewares.checkTokenSetUser);
 
