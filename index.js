@@ -3,7 +3,7 @@ const volleyball = require('volleyball');
 const cors = require('cors');
 const mongoose = require('mongoose');
 
-mongoose.connect(process.env.MONGO_URL, {
+mongoose.connect(process.env.MONGO_CONNECTION, {
   useNewUrlParser: true,
 });
 
