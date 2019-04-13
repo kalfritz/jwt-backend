@@ -41,7 +41,7 @@ class UserController {
               password: hashedPassword,
             };
 
-            User.create({ newUser }).then(_insertedUser => {
+            User.create(newUser).then(_insertedUser => {
               //remove the password from the object before create token
               const insertedUser = {
                 username: _insertedUser.username,

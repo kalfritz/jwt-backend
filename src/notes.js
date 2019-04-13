@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => {
       ...req.body,
       user_id: req.user._id,
     };
-    Note.create({ note })
+    Note.create(note)
       .then(insertedNote => {
         res.json(insertedNote);
       })
